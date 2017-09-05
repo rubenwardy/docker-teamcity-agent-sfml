@@ -2,14 +2,17 @@
 
 mkdir ~/sfml2build
 cd ~/sfml2build
-wget https://github.com/SFML/SFML/archive/master.zip -O master.zip
+wget https://github.com/SFML/SFML/archive/c43b5991afe815ef92a812d67f8af12b0143adfd.zip -O master.zip
 unzip master.zip
 rm master.zip
 
+cd SFML-c43b5991afe815ef92a812d67f8af12b0143adfd
 
-cd SFML-master
+git apply /sfml.patch
 
-DEBIAN_FRONTEND=noninteractive apt-get install -y libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev cmake g++
+cat CMakeLists.txt.rej
+
+DEBIAN_FRONTEND=noninteractive apt-get install -y libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev cmake g++ lcov zip
 
 
 echo building make for dynamic release
